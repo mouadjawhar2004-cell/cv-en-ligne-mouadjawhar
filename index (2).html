@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mouad Jawhar — Portfolio</title>
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+
+  <style>
+    :root {
+      --teal: #0d9488;
+      --teal-dark: #0f766e;
+      --teal-light: #ccfbf1;
+      --ink: #0f172a;
+      --muted: #64748b;
+      --surface: #f8fafc;
+      --white: #ffffff;
+      --accent: #f59e0b;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--white);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, .display-font {
+      font-family: 'Playfair Display', serif;
+    }
+
+    /* ── NAVBAR ── */
+    .navbar {
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(13,148,136,0.12);
+      padding: 1rem 0;
+      transition: box-shadow .3s;
+    }
+    .navbar.scrolled { box-shadow: 0 4px 24px rgba(0,0,0,0.08); }
+    .navbar-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: var(--teal) !important;
+      font-weight: 700;
+    }
+    .nav-link {
+      color: var(--ink) !important;
+      font-weight: 500;
+      font-size: .92rem;
+      letter-spacing: .02em;
+      padding: .4rem .9rem !important;
+      border-radius: 6px;
+      transition: background .2s, color .2s;
+    }
+    .nav-link:hover, .nav-link.active {
+      background: var(--teal-light);
+      color: var(--teal) !important;
+    }
+
+    /* ── HERO ── */
+    #accueil {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(135deg, #f0fdfa 0%, #ffffff 55%, #fffbeb 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    #accueil::before {
+      content: '';
+      position: absolute;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(13,148,136,0.08) 0%, transparent 70%);
+      top: -100px; right: -100px;
+      pointer-events: none;
+    }
+    #accueil::after {
+      content: '';
+      position: absolute;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(245,158,11,0.06) 0%, transparent 70%);
+      bottom: -80px; left: -80px;
+      pointer-events: none;
+    }
+
+    .hero-photo-wrap {
+      position: relative;
+      display: inline-block;
+    }
+    .hero-photo-wrap::before {
+      content: '';
+      position: absolute;
+      inset: -8px;
+      border-radius: 50%;
+      background: conic-gradient(var(--teal), var(--accent), var(--teal));
+      animation: spin 8s linear infinite;
+      z-index: 0;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .hero-photo {
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid white;
+      position: relative;
+      z-index: 1;
+      display: block;
+    }
+    .hero-photo-placeholder {
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--teal) 0%, var(--teal-dark) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      color: white;
+      font-weight: 900;
+      position: relative;
+      z-index: 1;
+      border: 5px solid white;
+    }
+    .hero-badge {
+      position: absolute;
+      bottom: 8px; right: 0;
+      background: var(--accent);
+      color: white;
+      border-radius: 20px;
+      padding: 4px 12px;
+      font-size: .75rem;
+      font-weight: 700;
+      z-index: 2;
+      white-space: nowrap;
+    }
+    .hero-title {
+      font-size: clamp(2.8rem, 6vw, 4.5rem);
+      line-height: 1.05;
+      color: var(--ink);
+    }
+    .hero-title span { color: var(--teal); }
+    .hero-subtitle {
+      font-size: 1.1rem;
+      color: var(--muted);
+      font-weight: 400;
+      margin: 1rem 0 1.8rem;
+      line-height: 1.6;
+    }
+    .btn-primary-custom {
+      background: var(--teal);
+      color: white;
+      border: none;
+      padding: .75rem 2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: .95rem;
+      transition: transform .2s, box-shadow .2s;
+      display: inline-flex; align-items: center; gap: .5rem;
+    }
+    .btn-primary-custom:hover {
+      background: var(--teal-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(13,148,136,.35);
+      color: white;
+    }
+    .btn-outline-custom {
+      border: 2px solid var(--teal);
+      color: var(--teal);
+      padding: .75rem 2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: .95rem;
+      background: transparent;
+      transition: all .2s;
+      display: inline-flex; align-items: center; gap: .5rem;
+    }
+    .btn-outline-custom:hover {
+      background: var(--teal);
+      color: white;
+      transform: translateY(-2px);
+    }
+    .social-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      padding: .4rem 1rem;
+      border-radius: 50px;
+      border: 1.5px solid rgba(13,148,136,.25);
+      font-size: .85rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: all .2s;
+      background: white;
+    }
+    .social-pill:hover {
+      border-color: var(--teal);
+      color: var(--teal);
+      box-shadow: 0 4px 12px rgba(13,148,136,.15);
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 6rem 0; }
+    .section-tag {
+      display: inline-block;
+      background: var(--teal-light);
+      color: var(--teal);
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: .3rem .9rem;
+      border-radius: 50px;
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: var(--ink);
+      line-height: 1.1;
+      margin-bottom: .5rem;
+    }
+    .section-line {
+      width: 48px; height: 4px;
+      background: var(--teal);
+      border-radius: 2px;
+      margin: 1rem 0 2.5rem;
+    }
+
+    /* ── À PROPOS ── */
+    #apropos { background: var(--surface); }
+    .about-card {
+      background: white;
+      border-radius: 20px;
+      padding: 2.5rem;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+      height: 100%;
+    }
+    .info-row {
+      display: flex;
+      align-items: flex-start;
+      gap: .75rem;
+      padding: .75rem 0;
+      border-bottom: 1px solid #f1f5f9;
+    }
+    .info-row:last-child { border-bottom: none; }
+    .info-icon {
+      width: 36px; height: 36px;
+      background: var(--teal-light);
+      color: var(--teal);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .info-label { font-size: .75rem; color: var(--muted); font-weight: 500; }
+    .info-value { font-size: .92rem; font-weight: 500; color: var(--ink); }
+
+    /* ── COMPÉTENCES ── */
+    .skill-card {
+      background: white;
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      transition: transform .25s, box-shadow .25s;
+      height: 100%;
+      border: 1px solid transparent;
+    }
+    .skill-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(13,148,136,.15);
+      border-color: var(--teal-light);
+    }
+    .skill-icon {
+      width: 48px; height: 48px;
+      background: var(--teal-light);
+      color: var(--teal);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+    }
+    .skill-bar-wrap {
+      background: #f1f5f9;
+      border-radius: 10px;
+      height: 7px;
+      overflow: hidden;
+      margin-top: .5rem;
+    }
+    .skill-bar {
+      height: 100%;
+      border-radius: 10px;
+      background: linear-gradient(90deg, var(--teal), var(--accent));
+      transition: width 1.2s cubic-bezier(.22,1,.36,1);
+    }
+    .lang-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      padding: .45rem 1rem;
+      border-radius: 50px;
+      font-size: .85rem;
+      font-weight: 600;
+    }
+
+    /* ── FORMATION / EXPÉRIENCES ── */
+    #formation { background: var(--surface); }
+    .timeline { position: relative; padding-left: 2.5rem; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 10px; top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--teal), var(--teal-light));
+    }
+    .timeline-item { position: relative; margin-bottom: 2.5rem; }
+    .timeline-dot {
+      position: absolute;
+      left: -2.5rem;
+      top: 6px;
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      background: var(--teal);
+      border: 3px solid white;
+      box-shadow: 0 0 0 3px var(--teal-light);
+    }
+    .timeline-card {
+      background: white;
+      border-radius: 16px;
+      padding: 1.6rem 2rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,.06);
+      border-left: 4px solid var(--teal);
+      transition: transform .25s;
+    }
+    .timeline-card:hover { transform: translateX(4px); }
+    .timeline-year {
+      font-size: .78rem;
+      font-weight: 700;
+      color: var(--teal);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      background: var(--teal-light);
+      display: inline-block;
+      padding: .2rem .7rem;
+      border-radius: 20px;
+      margin-bottom: .5rem;
+    }
+
+    /* ── PROJETS ── */
+    .project-card {
+      border-radius: 20px;
+      overflow: hidden;
+      background: white;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+      transition: transform .3s, box-shadow .3s;
+      height: 100%;
+      border: 1px solid transparent;
+    }
+    .project-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 40px rgba(13,148,136,.18);
+      border-color: var(--teal-light);
+    }
+    .project-thumb {
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .project-thumb::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: inherit;
+      opacity: .15;
+    }
+    .project-body { padding: 1.5rem; }
+    .project-tag {
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--teal);
+      background: var(--teal-light);
+      padding: .2rem .65rem;
+      border-radius: 20px;
+      display: inline-block;
+      margin-bottom: .6rem;
+    }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--ink); }
+    #contact .section-tag { background: rgba(13,148,136,.2); color: #5eead4; }
+    #contact .section-title { color: white; }
+    #contact .section-line { background: var(--teal); }
+    .contact-info-card {
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 16px;
+      padding: 1.4rem;
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      transition: background .2s;
+      text-decoration: none;
+    }
+    .contact-info-card:hover { background: rgba(13,148,136,.15); color: white; }
+    .contact-icon {
+      width: 44px; height: 44px;
+      background: var(--teal);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+      color: white;
+      flex-shrink: 0;
+    }
+    .form-control-dark {
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.15);
+      color: white;
+      border-radius: 10px;
+      padding: .85rem 1.2rem;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .form-control-dark::placeholder { color: rgba(255,255,255,.35); }
+    .form-control-dark:focus {
+      background: rgba(255,255,255,.1);
+      border-color: var(--teal);
+      box-shadow: 0 0 0 3px rgba(13,148,136,.2);
+      color: white;
+    }
+    label.form-label { color: rgba(255,255,255,.75); font-size: .88rem; font-weight: 500; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #060f1a;
+      color: rgba(255,255,255,.5);
+      text-align: center;
+      padding: 2rem;
+      font-size: .85rem;
+    }
+    footer a { color: var(--teal); text-decoration: none; }
+
+    /* ── ANIMATIONS ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    @media (max-width: 768px) {
+      section { padding: 4rem 0; }
+      .hero-photo, .hero-photo-placeholder { width: 150px; height: 150px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════ NAVBAR ════════════════ -->
+<nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="#accueil">MJ.</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto gap-1">
+        <li class="nav-item"><a class="nav-link" href="#accueil">Accueil</a></li>
+        <li class="nav-item"><a class="nav-link" href="#apropos">À propos</a></li>
+        <li class="nav-item"><a class="nav-link" href="#competences">Compétences</a></li>
+        <li class="nav-item"><a class="nav-link" href="#formation">Formation</a></li>
+        <li class="nav-item"><a class="nav-link" href="#projets">Projets</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ════════════════ HERO / ACCUEIL ════════════════ -->
+<section id="accueil">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-7 order-lg-1 order-2 fade-up">
+        <span class="section-tag">👋 Bienvenue sur mon portfolio</span>
+        <h1 class="hero-title mt-2">
+          Mouad<br><span>Jawhar</span>
+        </h1>
+        <p class="hero-subtitle">
+          Étudiant en <strong>Marketing Digital & Expérience Utilisateur</strong> à l'EST Dakhla.<br>
+          Passionné par le numérique, la stratégie digitale et l'innovation.
+        </p>
+        <div class="d-flex flex-wrap gap-3 mb-4">
+          <a href="mouad_cv_00.pdf" download class="btn-primary-custom">
+            <i class="bi bi-download"></i> Télécharger mon CV
+          </a>
+          <a href="#contact" class="btn-outline-custom">
+            <i class="bi bi-envelope"></i> Me contacter
+          </a>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <a href="https://linkedin.com" target="_blank" class="social-pill">
+            <i class="bi bi-linkedin" style="color:#0077b5"></i> LinkedIn
+          </a>
+          <a href="https://github.com" target="_blank" class="social-pill">
+            <i class="bi bi-github"></i> GitHub
+          </a>
+          <a href="mailto:mouadjawhar2004@gmail.com" class="social-pill">
+            <i class="bi bi-envelope-fill" style="color:var(--teal)"></i> Email
+          </a>
+        </div>
+      </div>
+      <div class="col-lg-5 order-lg-2 order-1 text-center fade-up" style="transition-delay:.15s">
+        <div class="hero-photo-wrap d-inline-block">
+          <div class="hero-photo-placeholder">MJ</div>
+          <span class="hero-badge">📍 Dakhla, Maroc</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ À PROPOS ════════════════ -->
+<section id="apropos">
+  <div class="container">
+    <div class="row g-5 align-items-start">
+      <div class="col-lg-6 fade-up">
+        <span class="section-tag">Qui suis-je ?</span>
+        <h2 class="section-title">À propos de moi</h2>
+        <div class="section-line"></div>
+        <p class="text-muted lh-lg mb-4">
+          Je suis actuellement étudiant en <strong>Marketing Digital</strong>, avec une forte orientation vers l'expérience utilisateur. Grâce à mes études et aux formations spécialisées suivies chez <em>Amideast</em> et en <em>Financial & Business Management</em>, j'ai acquis des compétences solides en stratégie digitale, communication en ligne, analyse de données et gestion de projet.
+        </p>
+        <p class="text-muted lh-lg">
+          Ma capacité à comprendre les besoins des utilisateurs, à m'adapter aux évolutions technologiques et à travailler efficacement en équipe sont des atouts que je peux apporter à votre entreprise.
+        </p>
+        <div class="mt-4 d-flex gap-4">
+          <div class="text-center">
+            <div class="display-font fw-bold" style="font-size:2rem;color:var(--teal)">3+</div>
+            <div class="text-muted" style="font-size:.82rem">Formations</div>
+          </div>
+          <div class="text-center">
+            <div class="display-font fw-bold" style="font-size:2rem;color:var(--teal)">3</div>
+            <div class="text-muted" style="font-size:.82rem">Langues</div>
+          </div>
+          <div class="text-center">
+            <div class="display-font fw-bold" style="font-size:2rem;color:var(--teal)">∞</div>
+            <div class="text-muted" style="font-size:.82rem">Créativité</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 fade-up" style="transition-delay:.15s">
+        <div class="about-card">
+          <h5 class="mb-3" style="font-family:'Playfair Display',serif;color:var(--ink)">Informations personnelles</h5>
+          <div class="info-row">
+            <div class="info-icon"><i class="bi bi-person-fill"></i></div>
+            <div><div class="info-label">Nom complet</div><div class="info-value">Mouad Jawhar</div></div>
+          </div>
+          <div class="info-row">
+            <div class="info-icon"><i class="bi bi-envelope-fill"></i></div>
+            <div><div class="info-label">Email</div><div class="info-value">mouadjawhar2004@gmail.com</div></div>
+          </div>
+          <div class="info-row">
+            <div class="info-icon"><i class="bi bi-telephone-fill"></i></div>
+            <div><div class="info-label">Téléphone</div><div class="info-value">0644059884</div></div>
+          </div>
+          <div class="info-row">
+            <div class="info-icon"><i class="bi bi-geo-alt-fill"></i></div>
+            <div><div class="info-label">Adresse</div><div class="info-value">AV Mohamed V IM ODEP, 73000 Dakhla</div></div>
+          </div>
+          <div class="info-row">
+            <div class="info-icon"><i class="bi bi-car-front-fill"></i></div>
+            <div><div class="info-label">Permis</div><div class="info-value">Permis B</div></div>
+          </div>
+          <div class="info-row">
+            <div class="info-icon"><i class="bi bi-mortarboard-fill"></i></div>
+            <div><div class="info-label">Formation actuelle</div><div class="info-value">DUT Marketing Digital & UX — EST Dakhla</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ COMPÉTENCES ════════════════ -->
+<section id="competences">
+  <div class="container">
+    <div class="text-center mb-5 fade-up">
+      <span class="section-tag">Mes atouts</span>
+      <h2 class="section-title">Compétences</h2>
+      <div class="section-line mx-auto"></div>
+    </div>
+
+    <!-- Compétences techniques -->
+    <h5 class="mb-4 fade-up" style="font-family:'Playfair Display',serif">Compétences professionnelles</h5>
+    <div class="row g-4 mb-5">
+      <div class="col-md-6 col-lg-3 fade-up">
+        <div class="skill-card">
+          <div class="skill-icon"><i class="bi bi-graph-up-arrow"></i></div>
+          <h6 class="fw-bold">Stratégie Digitale</h6>
+          <p class="text-muted" style="font-size:.85rem">Marketing digital, SEO/SEM, réseaux sociaux</p>
+          <div class="skill-bar-wrap"><div class="skill-bar" style="width:80%"></div></div>
+          <small class="text-muted">80%</small>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 fade-up" style="transition-delay:.1s">
+        <div class="skill-card">
+          <div class="skill-icon"><i class="bi bi-people-fill"></i></div>
+          <h6 class="fw-bold">UX / Expérience Utilisateur</h6>
+          <p class="text-muted" style="font-size:.85rem">Analyse besoins, parcours utilisateur</p>
+          <div class="skill-bar-wrap"><div class="skill-bar" style="width:75%"></div></div>
+          <small class="text-muted">75%</small>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 fade-up" style="transition-delay:.2s">
+        <div class="skill-card">
+          <div class="skill-icon"><i class="bi bi-bar-chart-fill"></i></div>
+          <h6 class="fw-bold">Analyse de données</h6>
+          <p class="text-muted" style="font-size:.85rem">Excel, indicateurs KPI, reporting</p>
+          <div class="skill-bar-wrap"><div class="skill-bar" style="width:70%"></div></div>
+          <small class="text-muted">70%</small>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 fade-up" style="transition-delay:.3s">
+        <div class="skill-card">
+          <div class="skill-icon"><i class="bi bi-laptop-fill"></i></div>
+          <h6 class="fw-bold">Outils Bureautiques</h6>
+          <p class="text-muted" style="font-size:.85rem">Word, Excel, PowerPoint</p>
+          <div class="skill-bar-wrap"><div class="skill-bar" style="width:90%"></div></div>
+          <small class="text-muted">90%</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- Soft skills -->
+    <h5 class="mb-4 fade-up" style="font-family:'Playfair Display',serif">Qualités personnelles</h5>
+    <div class="row g-3 mb-5 fade-up">
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="skill-card text-center py-3">
+          <i class="bi bi-lightning-charge-fill fs-4 mb-2" style="color:var(--teal)"></i>
+          <div class="fw-600" style="font-size:.9rem">Prise d'initiative</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="skill-card text-center py-3">
+          <i class="bi bi-shield-check-fill fs-4 mb-2" style="color:var(--teal)"></i>
+          <div class="fw-600" style="font-size:.9rem">Sens des responsabilités</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="skill-card text-center py-3">
+          <i class="bi bi-arrows-move fs-4 mb-2" style="color:var(--teal)"></i>
+          <div class="fw-600" style="font-size:.9rem">Capacité d'adaptation</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="skill-card text-center py-3">
+          <i class="bi bi-people-fill fs-4 mb-2" style="color:var(--teal)"></i>
+          <div class="fw-600" style="font-size:.9rem">Travail en équipe</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="skill-card text-center py-3">
+          <i class="bi bi-lightbulb-fill fs-4 mb-2" style="color:var(--teal)"></i>
+          <div class="fw-600" style="font-size:.9rem">Créativité & Innovation</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="skill-card text-center py-3">
+          <i class="bi bi-search fs-4 mb-2" style="color:var(--teal)"></i>
+          <div class="fw-600" style="font-size:.9rem">Capacité d'analyse</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Langues -->
+    <h5 class="mb-4 fade-up" style="font-family:'Playfair Display',serif">Langues</h5>
+    <div class="row g-3 fade-up">
+      <div class="col-auto">
+        <span class="lang-badge" style="background:#fff3cd;color:#856404">
+          🇲🇦 Arabe — Langue maternelle
+        </span>
+      </div>
+      <div class="col-auto">
+        <span class="lang-badge" style="background:#d1ecf1;color:#0c5460">
+          🇫🇷 Français — B2
+        </span>
+      </div>
+      <div class="col-auto">
+        <span class="lang-badge" style="background:#d4edda;color:#155724">
+          🇬🇧 Anglais — A2
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ FORMATION ════════════════ -->
+<section id="formation">
+  <div class="container">
+    <div class="text-center mb-5 fade-up">
+      <span class="section-tag">Mon parcours</span>
+      <h2 class="section-title">Formation & Certifications</h2>
+      <div class="section-line mx-auto"></div>
+    </div>
+    <div class="row g-5">
+      <div class="col-lg-6 fade-up">
+        <h5 class="mb-4" style="font-family:'Playfair Display',serif;color:var(--ink)">
+          <i class="bi bi-mortarboard-fill me-2" style="color:var(--teal)"></i>Formation académique
+        </h5>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card">
+              <span class="timeline-year">2024 – En cours</span>
+              <h6 class="fw-bold mt-1">DUT Marketing Digital & Expérience Utilisateur</h6>
+              <p class="text-muted mb-0" style="font-size:.88rem">École Supérieure de Technologie — Dakhla (EST-D)</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card">
+              <span class="timeline-year">2024</span>
+              <h6 class="fw-bold mt-1">Financial and Business Management</h6>
+              <p class="text-muted mb-0" style="font-size:.88rem">Attestation de participation</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card">
+              <span class="timeline-year">2023</span>
+              <h6 class="fw-bold mt-1">Formation Skills for Success</h6>
+              <p class="text-muted mb-0" style="font-size:.88rem">Amideast — Certificate of Achievement</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card">
+              <span class="timeline-year">2023</span>
+              <h6 class="fw-bold mt-1">Baccalauréat Économie</h6>
+              <p class="text-muted mb-0" style="font-size:.88rem">Lycée Iala Khadija — Dakhla</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 fade-up" style="transition-delay:.15s">
+        <h5 class="mb-4" style="font-family:'Playfair Display',serif;color:var(--ink)">
+          <i class="bi bi-award-fill me-2" style="color:var(--teal)"></i>Domaines d'expertise
+        </h5>
+        <div class="row g-3">
+          <div class="col-12">
+            <div class="about-card d-flex align-items-center gap-3">
+              <div class="skill-icon" style="flex-shrink:0"><i class="bi bi-megaphone-fill"></i></div>
+              <div>
+                <h6 class="mb-1 fw-bold">Marketing Digital</h6>
+                <p class="mb-0 text-muted" style="font-size:.85rem">Stratégie, SEO, réseaux sociaux, e-commerce</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="about-card d-flex align-items-center gap-3">
+              <div class="skill-icon" style="flex-shrink:0"><i class="bi bi-cursor-fill"></i></div>
+              <div>
+                <h6 class="mb-1 fw-bold">UX Design</h6>
+                <p class="mb-0 text-muted" style="font-size:.85rem">Expérience utilisateur, wireframing, tests</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="about-card d-flex align-items-center gap-3">
+              <div class="skill-icon" style="flex-shrink:0"><i class="bi bi-briefcase-fill"></i></div>
+              <div>
+                <h6 class="mb-1 fw-bold">Gestion de Projet</h6>
+                <p class="mb-0 text-muted" style="font-size:.85rem">Planning, coordination, suivi de performance</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="about-card d-flex align-items-center gap-3">
+              <div class="skill-icon" style="flex-shrink:0"><i class="bi bi-cash-stack"></i></div>
+              <div>
+                <h6 class="mb-1 fw-bold">Business Management</h6>
+                <p class="mb-0 text-muted" style="font-size:.85rem">Analyse financière, stratégie d'entreprise</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ PROJETS ════════════════ -->
+<section id="projets">
+  <div class="container">
+    <div class="text-center mb-5 fade-up">
+      <span class="section-tag">Mes réalisations</span>
+      <h2 class="section-title">Projets</h2>
+      <div class="section-line mx-auto"></div>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-4 fade-up">
+        <div class="project-card">
+          <div class="project-thumb" style="background:linear-gradient(135deg,#0d9488,#0f766e)">🌐</div>
+          <div class="project-body">
+            <span class="project-tag">Web Design</span>
+            <h5 class="fw-bold mb-2">CV en ligne — Bootstrap 5</h5>
+            <p class="text-muted" style="font-size:.88rem">Création d'un portfolio professionnel responsive avec Bootstrap 5 et déployé sur GitHub Pages.</p>
+            <div class="d-flex gap-2 mt-3">
+              <a href="#" class="btn btn-sm btn-outline-secondary rounded-pill">
+                <i class="bi bi-github me-1"></i>GitHub
+              </a>
+              <a href="#" class="btn btn-sm rounded-pill text-white" style="background:var(--teal)">
+                <i class="bi bi-eye me-1"></i>Voir
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4 fade-up" style="transition-delay:.1s">
+        <div class="project-card">
+          <div class="project-thumb" style="background:linear-gradient(135deg,#f59e0b,#d97706)">📊</div>
+          <div class="project-body">
+            <span class="project-tag">Marketing Digital</span>
+            <h5 class="fw-bold mb-2">Stratégie Social Media</h5>
+            <p class="text-muted" style="font-size:.88rem">Développement d'une stratégie de contenu pour les réseaux sociaux avec analyse de données et KPIs.</p>
+            <div class="d-flex gap-2 mt-3">
+              <a href="#" class="btn btn-sm btn-outline-secondary rounded-pill">
+                <i class="bi bi-file-earmark-pdf me-1"></i>PDF
+              </a>
+              <a href="#" class="btn btn-sm rounded-pill text-white" style="background:var(--accent)">
+                <i class="bi bi-eye me-1"></i>Voir
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4 fade-up" style="transition-delay:.2s">
+        <div class="project-card">
+          <div class="project-thumb" style="background:linear-gradient(135deg,#6366f1,#4f46e5)">🎨</div>
+          <div class="project-body">
+            <span class="project-tag">UX Research</span>
+            <h5 class="fw-bold mb-2">Étude UX — Application Mobile</h5>
+            <p class="text-muted" style="font-size:.88rem">Analyse des besoins utilisateurs, création de personas et wireframes pour une application mobile.</p>
+            <div class="d-flex gap-2 mt-3">
+              <a href="#" class="btn btn-sm btn-outline-secondary rounded-pill">
+                <i class="bi bi-file-earmark me-1"></i>Rapport
+              </a>
+              <a href="#" class="btn btn-sm rounded-pill text-white" style="background:#6366f1">
+                <i class="bi bi-eye me-1"></i>Voir
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4 fade-up" style="transition-delay:.3s">
+        <div class="project-card">
+          <div class="project-thumb" style="background:linear-gradient(135deg,#ec4899,#be185d)">📈</div>
+          <div class="project-body">
+            <span class="project-tag">Analyse</span>
+            <h5 class="fw-bold mb-2">Analyse de Marché — Dakhla</h5>
+            <p class="text-muted" style="font-size:.88rem">Étude de marché locale avec collecte de données, analyse concurrentielle et recommandations.</p>
+            <div class="d-flex gap-2 mt-3">
+              <a href="#" class="btn btn-sm btn-outline-secondary rounded-pill">
+                <i class="bi bi-file-earmark-excel me-1"></i>Excel
+              </a>
+              <a href="#" class="btn btn-sm rounded-pill text-white" style="background:#ec4899">
+                <i class="bi bi-eye me-1"></i>Voir
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4 fade-up" style="transition-delay:.4s">
+        <div class="project-card">
+          <div class="project-thumb" style="background:linear-gradient(135deg,#10b981,#059669)">🎯</div>
+          <div class="project-body">
+            <span class="project-tag">Campagne</span>
+            <h5 class="fw-bold mb-2">Campagne Email Marketing</h5>
+            <p class="text-muted" style="font-size:.88rem">Conception et déploiement d'une campagne email avec segmentation et analyse de performance.</p>
+            <div class="d-flex gap-2 mt-3">
+              <a href="#" class="btn btn-sm btn-outline-secondary rounded-pill">
+                <i class="bi bi-envelope me-1"></i>Détails
+              </a>
+              <a href="#" class="btn btn-sm rounded-pill text-white" style="background:#10b981">
+                <i class="bi bi-eye me-1"></i>Voir
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4 fade-up" style="transition-delay:.5s">
+        <div class="project-card">
+          <div class="project-thumb" style="background:linear-gradient(135deg,#f97316,#ea580c)">💼</div>
+          <div class="project-body">
+            <span class="project-tag">Business</span>
+            <h5 class="fw-bold mb-2">Business Plan — Start-up</h5>
+            <p class="text-muted" style="font-size:.88rem">Élaboration d'un business plan complet incluant l'analyse financière et la stratégie de lancement.</p>
+            <div class="d-flex gap-2 mt-3">
+              <a href="#" class="btn btn-sm btn-outline-secondary rounded-pill">
+                <i class="bi bi-file-earmark-pdf me-1"></i>PDF
+              </a>
+              <a href="#" class="btn btn-sm rounded-pill text-white" style="background:#f97316">
+                <i class="bi bi-eye me-1"></i>Voir
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ CONTACT ════════════════ -->
+<section id="contact">
+  <div class="container">
+    <div class="text-center mb-5 fade-up">
+      <span class="section-tag">Travaillons ensemble</span>
+      <h2 class="section-title">Me contacter</h2>
+      <div class="section-line mx-auto"></div>
+    </div>
+    <div class="row g-5">
+      <div class="col-lg-5 fade-up">
+        <p class="text-white-50 mb-4 lh-lg">
+          Vous souhaitez collaborer, discuter d'un projet ou simplement échanger ? N'hésitez pas à me contacter via l'un des canaux ci-dessous.
+        </p>
+        <div class="d-flex flex-column gap-3">
+          <a href="mailto:mouadjawhar2004@gmail.com" class="contact-info-card">
+            <div class="contact-icon"><i class="bi bi-envelope-fill"></i></div>
+            <div>
+              <div style="font-size:.75rem;color:rgba(255,255,255,.5);font-weight:600;text-transform:uppercase;letter-spacing:.08em">Email</div>
+              <div style="font-size:.92rem">mouadjawhar2004@gmail.com</div>
+            </div>
+          </a>
+          <a href="tel:0644059884" class="contact-info-card">
+            <div class="contact-icon"><i class="bi bi-telephone-fill"></i></div>
+            <div>
+              <div style="font-size:.75rem;color:rgba(255,255,255,.5);font-weight:600;text-transform:uppercase;letter-spacing:.08em">Téléphone</div>
+              <div style="font-size:.92rem">0644059884</div>
+            </div>
+          </a>
+          <a href="https://linkedin.com" target="_blank" class="contact-info-card">
+            <div class="contact-icon" style="background:#0077b5"><i class="bi bi-linkedin"></i></div>
+            <div>
+              <div style="font-size:.75rem;color:rgba(255,255,255,.5);font-weight:600;text-transform:uppercase;letter-spacing:.08em">LinkedIn</div>
+              <div style="font-size:.92rem">linkedin.com/in/mouad-jawhar</div>
+            </div>
+          </a>
+          <a href="https://github.com" target="_blank" class="contact-info-card">
+            <div class="contact-icon" style="background:#333"><i class="bi bi-github"></i></div>
+            <div>
+              <div style="font-size:.75rem;color:rgba(255,255,255,.5);font-weight:600;text-transform:uppercase;letter-spacing:.08em">GitHub</div>
+              <div style="font-size:.92rem">github.com/mouad-jawhar</div>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="col-lg-7 fade-up" style="transition-delay:.15s">
+        <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:2.5rem">
+          <h5 class="text-white mb-4" style="font-family:'Playfair Display',serif">Envoyer un message</h5>
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label">Votre nom</label>
+              <input type="text" class="form-control form-control-dark" placeholder="Ex : Ahmed Benali" alt="Champ nom" />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Votre email</label>
+              <input type="email" class="form-control form-control-dark" placeholder="exemple@email.com" alt="Champ email" />
+            </div>
+            <div class="col-12">
+              <label class="form-label">Sujet</label>
+              <input type="text" class="form-control form-control-dark" placeholder="Objet de votre message" alt="Champ sujet" />
+            </div>
+            <div class="col-12">
+              <label class="form-label">Message</label>
+              <textarea class="form-control form-control-dark" rows="5" placeholder="Votre message ici..." alt="Zone de message"></textarea>
+            </div>
+            <div class="col-12">
+              <button class="btn-primary-custom w-100 justify-content-center" onclick="alert('Message envoyé ! Merci de me contacter.')">
+                <i class="bi bi-send-fill"></i> Envoyer le message
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ FOOTER ════════════════ -->
+<footer>
+  <p>
+    © 2025 <strong style="color:var(--teal)">Mouad Jawhar</strong> — Portfolio professionnel<br>
+    <small>
+      <a href="mailto:mouadjawhar2004@gmail.com">mouadjawhar2004@gmail.com</a> &nbsp;·&nbsp;
+      <a href="https://linkedin.com" target="_blank">LinkedIn</a> &nbsp;·&nbsp;
+      <a href="https://github.com" target="_blank">GitHub</a>
+    </small>
+  </p>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  // Navbar scroll effect
+  window.addEventListener('scroll', () => {
+    document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 30);
+  });
+
+  // Active nav link
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-link');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(l => l.classList.remove('active'));
+        const link = document.querySelector(`.nav-link[href="#${entry.target.id}"]`);
+        if (link) link.classList.add('active');
+      }
+    });
+  }, { threshold: 0.4 });
+  sections.forEach(s => observer.observe(s));
+
+  // Scroll animations
+  const fadeEls = document.querySelectorAll('.fade-up');
+  const fadeObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        // animate skill bars
+        e.target.querySelectorAll('.skill-bar').forEach(bar => {
+          bar.style.width = bar.style.width;
+        });
+      }
+    });
+  }, { threshold: 0.15 });
+  fadeEls.forEach(el => fadeObserver.observe(el));
+</script>
+</body>
+</html>
